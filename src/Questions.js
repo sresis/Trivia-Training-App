@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useRef } from "react";
 import { Col, Container, Nav, Navbar, Row, Button, Form, FormLabel, Radio } from 'react-bootstrap';
 import triviaQuestions from "./Data.json";
 import './App.css';
@@ -24,23 +24,45 @@ function Questions() {
     const [questionIdx, setQuestionIdx] = useState(0);
     const [correctCount, setCorrectCount] = useState(0);
     const [questionsLeft, setQuestionsLeft] = useState(true);
+    const [showNextBut, setShowNextBut] = useState(false);
+    const [disabled, setDisabled] = useState(false);
+    const [selection, setSelection] = useState();
     // shuffles the questions
-    shuffleArray(triviaQuestions[questionIdx].allOptions);
+    
+    // handle answered question
+    let showCorrect = null;
     const choices = []
 
     const handleChoice = (response) => {
         // check if it is correct
+        setDisabled(true);
+        setShowNextBut(true);
+        setSelection(response);
         const correctAns = triviaQuestions[questionIdx].correct;
         if (response === correctAns) {
-            alert('bingo bango');
-            setCorrectCount(correctCount + 1);
+            setCorrectCount(correctCount + 1)
+        }
+    }
+    const changeColor = (option) => {
+        if (option === triviaQuestions[questionIdx].correct) {
+            return ('green')
+        }
+        else if(option === selection) {
+            return('red')
         }
         else {
-            alert('wrong');
+            return('grey')
         }
+    }
+        const getNextQ = (evt) => {
+        shuffleArray(triviaQuestions[questionIdx].allOptions);
+        // shows the next question (up to Q10)
+        evt.preventDefault();
+        setDisabled(false);
         const nextIdx = questionIdx + 1
         if (nextIdx < 10) {
             setQuestionIdx(questionIdx + 1);
+            setShowNextBut(false);
         }
         else {
             setQuestionsLeft(false);
@@ -55,7 +77,13 @@ function Questions() {
     for (const choice of triviaQuestions[questionIdx].allOptions.values()) {
         choices.push(
             <div>
-                <Button className="option-but" id={choice} onClick={() => handleChoice(choice)}>{choice}</Button>                
+                <Button 
+                className="option-but" 
+                value={choice}
+                style={disabled ? {backgroundColor: changeColor(choice)} : null  }
+                disabled={disabled}
+                id={choice} onClick={() => handleChoice(choice)}>{choice}
+                </Button>                
             </div>
         )
     }
@@ -65,18 +93,26 @@ function Questions() {
                 <Form id='question-form'>
                     <FormLabel> Question {questionIdx + 1}: {triviaQuestions[questionIdx].question} </FormLabel>
                     <div>{choices}</div>
-                    <div>{correctCount} / {questionIdx} correct so far</div>
+                    <div>{correctCount} correct so far</div>
+                    {showNextBut? (
+                        <div><button id="next-but" onClick={getNextQ}>Next >> </button></div>) : (
+                        <div></div> )
+                    }
                 </Form>
             ) : (
                 <React.Fragment>
-                    <div>Final Score: {correctCount} / {questionIdx+ 1}</div>
-                    <button value="play" onClick={playAgain}>Play Again?</button>
+                    <div id="final-box">Final Score: {correctCount} / {questionIdx+ 1}
+                        <div>
+                            <button id="play" onClick={playAgain}>Play Again?</button>
+                        </div>
+                    </div>
+                    
                 </React.Fragment>
             )}
             <div className="footer container-fluid">
                 <p className="center">💡 | 
                 <i className="fas fa-envelope-square padding"></i> Stephanie Resis | 
-                <a href="https://www.linkedin.com/in/stephanie-resis/"><i className="fab fa-linkedin padding"></i>LinkedIn </a>|
+                <a href="https://www.linkedin.com/in/stephanie-resis/"><i className="fab fa-linkedin padding"></i> LinkedIn </a>
                 </p>
             </div>
         </React.Fragment>     
