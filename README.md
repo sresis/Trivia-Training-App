@@ -16,10 +16,13 @@ git clone https://github.com/sresis/IP-Address-Location-Finder.git
 ```
 - Install requirements
 ```bash
-pip3 install requirements.txt
+pip3 install -r requirements.txt
 ```
-- In the project directory, you can run:
+- In the project directory, run 
 
+```bash
+npm install```
+- Next, run:
 ```bash
 npm start
 ```
