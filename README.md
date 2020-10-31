@@ -20,6 +20,7 @@ After clicking on an option, the player can immediately see if they were correct
 If the player is correct, their selection will appear green.
 ![alt text](static/correct.png)
 If the player is incorrect, their selection will appear red and the correct answer will appear green.
+![alt text](static/incorrect.png)
 
 
 ## Getting Started
