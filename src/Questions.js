@@ -101,8 +101,9 @@ function Questions() {
                 </Form>
             ) : (
                 <React.Fragment>
-                    <div id="final-box">Final Score: {correctCount} / {questionIdx+ 1}
-                        <div>
+                    <div id="final-box">
+                        <div >
+                            <div id="final-box-text">Final Score: {correctCount} / {questionIdx+ 1}</div>
                             <button id="play" onClick={playAgain}>Play Again?</button>
                         </div>
                     </div>
