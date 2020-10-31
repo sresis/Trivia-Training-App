@@ -12,14 +12,17 @@ function Home(props) {
   };
 
   return (
-    <div className="home">
-      <h1>Welcome to Trivia Training!</h1>
-      <button className="start-trivia"
-                id="home-but" 
-              onClick={handleClick}> 
-        Start Playing! 
-      </button>
-    </div>
+    <React.Fragment>
+      <div className="home">
+        <h1>Welcome to Trivia Training!</h1>
+        <button className="start-trivia"
+                  id="home-but" 
+                onClick={handleClick}> 
+          Start Playing! 
+        </button>
+      </div>
+    </React.Fragment>
+    
       );
 }
 

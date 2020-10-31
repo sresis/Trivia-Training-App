@@ -89,6 +89,7 @@ function Questions() {
     }
     return(
         <React.Fragment>
+            <div className="title container-fluid"><h3>Trivia Training 💪</h3></div>
             {questionsLeft? (
                 <Form id='question-form'>
                     <FormLabel> Question {questionIdx + 1}: {triviaQuestions[questionIdx].question} </FormLabel>
