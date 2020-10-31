@@ -21,7 +21,8 @@ pip3 install -r requirements.txt
 - In the project directory, run 
 
 ```bash
-npm install```
+npm install
+```
 - Next, run:
 ```bash
 npm start
