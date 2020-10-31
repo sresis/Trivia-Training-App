@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import { Col, Container, Nav, Navbar, Row, Button, Form, FormLabel, Radio } from 'react-bootstrap';
 import triviaQuestions from "./Data.json";
-
+import './App.css';
 // store the incorrect and correct answers together in an array
 for (const item of triviaQuestions) {
     const options = item.incorrect;
@@ -62,7 +62,7 @@ function Questions() {
     return(
         <React.Fragment>
             {questionsLeft? (
-                <Form>
+                <Form id='question-form'>
                     <FormLabel> Question {questionIdx + 1}: {triviaQuestions[questionIdx].question} </FormLabel>
                     <div>{choices}</div>
                     <div>{correctCount} / {questionIdx} correct so far</div>
