@@ -16,7 +16,7 @@ Players can view one question at a time (out of a 10 question round) and its cor
 ![alt text](static/question.png) 
 
 #### View Correct Answer
-After clicking on an option, the player can immediately see if they were correct. The cumulative correct answer count is shown at the bottom and is updated in real time. 
+After clicking on an option, the player can immediately see if they were correct. The cumulative correct answer count is shown at the bottom and is updated in real time. Upon clicking an option, all of the option buttons are disabled, and the next button appears and the player can proceed to the next question when they are ready. 
 
 If the player is correct, their selection will appear green.
 ![alt text](static/correct_ans.png)
