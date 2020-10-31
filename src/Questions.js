@@ -8,9 +8,12 @@ for (const item of triviaQuestions) {
     options.push(item.correct);
     item.allOptions = options;
 }
-const values = Object.values(triviaQuestions)
-const randomValue = values[parseInt(Math.random() * values.length)]
+// shuffle it
+shuffleArray(triviaQuestions);
+console.log(triviaQuestions);
 
+
+// function to shuffle items
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -19,23 +22,62 @@ function shuffleArray(array) {
 }
 function Questions() {
     const [questionIdx, setQuestionIdx] = useState(0);
-    console.log(triviaQuestions[1]);
-    const x = shuffleArray(triviaQuestions[questionIdx].allOptions);
-    console.log(x);
+    const [correctCount, setCorrectCount] = useState(0);
+    const [questionsLeft, setQuestionsLeft] = useState(true);
+    // shuffles the questions
+    shuffleArray(triviaQuestions[questionIdx].allOptions);
     const choices = []
+
+    const handleChoice = (response) => {
+        // check if it is correct
+        const correctAns = triviaQuestions[questionIdx].correct;
+        if (response === correctAns) {
+            alert('bingo bango');
+            setCorrectCount(correctCount + 1);
+        }
+        else {
+            alert('wrong');
+        }
+        const nextIdx = questionIdx + 1
+        if (nextIdx < 10) {
+            setQuestionIdx(questionIdx + 1);
+        }
+        else {
+            setQuestionsLeft(false);
+        }
+    }
+    const playAgain = (response) => {
+        setCorrectCount(0);
+        setQuestionIdx(0);
+        setQuestionsLeft(true);
+        shuffleArray(triviaQuestions[questionIdx].allOptions);
+    }
     for (const choice of triviaQuestions[questionIdx].allOptions.values()) {
         choices.push(
             <div>
-                <Button>{choice}</Button>                
+                <Button onClick={() => handleChoice(choice)}>{choice}</Button>                
             </div>
         )
     }
     return(
-        <Form>
-            <FormLabel>{triviaQuestions[questionIdx].question} </FormLabel>
-            <div>{choices}</div>
+        <React.Fragment>
+            {questionsLeft? (
+                <Form>
+                    <FormLabel> Question {questionIdx + 1}: {triviaQuestions[questionIdx].question} </FormLabel>
+                    <div>{choices}</div>
+                    <div>{correctCount} / {questionIdx} correct so far</div>
+                </Form>
+                
+            ) : (
+                <React.Fragment>
+                    <div>Final Score: {correctCount} / {questionIdx+ 1}</div>
+                    <Button value="play" onClick={playAgain}>Play Again?</Button>
+                </React.Fragment>
+            )}
+            
 
-        </Form>
+        </React.Fragment>
+        
     )
 }
 
