@@ -31,7 +31,7 @@ After completing the trivia round, players can see their score and start a new g
 
 - Clone the repository
 ```bash
-git clone https://github.com/sresis/IP-Address-Location-Finder.git
+git clone https://github.com/sresis/Trivia-Training-App.git
 ```
 - Install requirements
 ```bash
