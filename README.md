@@ -18,7 +18,7 @@ Players can view one question at a time (out of a 10 question round) and its cor
 After clicking on an option, the player can immediately see if they were correct. The cumulative correct answer count is shown at the bottom and is updated in real time. 
 
 If the player is correct, their selection will appear green.
-![alt text](static/correct.png)
+![alt text](static/correct_ans.png)
 If the player is incorrect, their selection will appear red and the correct answer will appear green.
 ![alt text](static/incorrect.png)
 
