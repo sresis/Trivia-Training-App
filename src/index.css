@@ -1,13 +1,13 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
   text-align: center;
   background: url("/src/light.jpg") no-repeat center center fixed;
   background-size: cover;
+  display: flex;
+  justify-content: center;
+  font-family: 'Montserrat','Karla','Quicksand', 'Calibri';
+
 }
 
 code {

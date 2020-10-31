@@ -55,7 +55,7 @@ function Questions() {
     for (const choice of triviaQuestions[questionIdx].allOptions.values()) {
         choices.push(
             <div>
-                <Button onClick={() => handleChoice(choice)}>{choice}</Button>                
+                <Button className="option-but" id={choice} onClick={() => handleChoice(choice)}>{choice}</Button>                
             </div>
         )
     }
@@ -67,17 +67,19 @@ function Questions() {
                     <div>{choices}</div>
                     <div>{correctCount} / {questionIdx} correct so far</div>
                 </Form>
-                
             ) : (
                 <React.Fragment>
                     <div>Final Score: {correctCount} / {questionIdx+ 1}</div>
-                    <Button value="play" onClick={playAgain}>Play Again?</Button>
+                    <button value="play" onClick={playAgain}>Play Again?</button>
                 </React.Fragment>
             )}
-            
-
-        </React.Fragment>
-        
+            <div className="footer container-fluid">
+                <p className="center">💡 | 
+                <i className="fas fa-envelope-square padding"></i> Stephanie Resis | 
+                <a href="https://www.linkedin.com/in/stephanie-resis/"><i className="fab fa-linkedin padding"></i>LinkedIn </a>|
+                </p>
+            </div>
+        </React.Fragment>     
     )
 }
 
